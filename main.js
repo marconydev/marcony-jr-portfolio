@@ -94,13 +94,14 @@ form?.addEventListener('submit',async e=>{
   if(!document.getElementById('consent').checked){status.textContent='CONFIRME O CONSENTIMENTO';return;}
   const data=new FormData(form);
   data.append('_captcha','false');
-  submit.disabled=true;status.textContent='ENVIANDO MENSAGEM...';fallback.hidden=true;
+  submit.disabled=true;status.classList.remove('success');status.textContent='ENVIANDO MENSAGEM...';fallback.hidden=true;
   try{
     const response=await fetch('https://formsubmit.co/ajax/'+encodeURIComponent(site.email||'marconydev@gmail.com'),{method:'POST',headers:{Accept:'application/json'},body:data});
     let result={};try{result=await response.json();}catch{}
-    if(!response.ok || result.success===false || result.success==='false')throw new Error(result.message||'Falha no envio');
+    const accepted = result && (result.success === true || result.success === 'true');
+    if(!response.ok || !accepted)throw new Error(result.message || 'O serviço não confirmou o recebimento');
     form.reset();document.getElementById('message-count').textContent='0';
-    status.textContent='SOLICITAÇÃO ENVIADA — CONFIRA A CAIXA DE E-MAIL';
+    status.textContent='FORMULÁRIO ACEITO PELO SERVIÇO — VERIFIQUE A ATIVAÇÃO DO E-MAIL';
     status.classList.add('success');
     // O FormSubmit solicita ativacao pelo destinatario no primeiro envio.
   }catch(err){
