@@ -279,3 +279,72 @@ body{
 .service-map[data-chapter="build"] .service-map__packet{fill:#b9c9ff}
 .service-map__edge--dependency.is-contextual{opacity:.36!important}
 .service-map[data-chapter="diagnose"] .service-map__edge--telemetry.is-contextual{stroke:#d1af83!important}
+
+
+/* V9.2 · Legenda acessível das seis relações do grafo, sem cobrir nós. */
+.service-map__legend{
+  display:flex;align-items:center;gap:12px;flex:none;min-width:0;
+  padding:9px 18px 9px 20px;
+  border-top:1px solid rgba(169,210,210,.16);
+  border-bottom:1px solid rgba(169,210,210,.12);
+  background:linear-gradient(90deg,rgba(16,40,48,.72),rgba(13,30,38,.56));
+}
+.service-map__legend-title{
+  flex:none;color:#91bbc0;font:9px/1.3 var(--mono);
+  letter-spacing:.08em;padding-right:12px;border-right:1px solid rgba(169,210,210,.24)
+}
+.service-map__legend-items{
+  display:flex;flex-wrap:wrap;align-items:center;gap:6px 13px;
+  margin:0;padding:0;list-style:none;min-width:0
+}
+.service-map__legend-items li{
+  display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+  font:9px/1.4 var(--mono);color:#c8dfdf
+}
+.service-map__legend-stroke{
+  --legend-stroke:#76bfb9;
+  display:inline-block;flex:none;position:relative;
+  width:20px;height:2px;border-radius:1px;background:var(--legend-stroke);
+}
+.service-map__legend-stroke.is-request{--legend-stroke:#76bfb9}
+.service-map__legend-stroke.is-telemetry{
+  --legend-stroke:#68a6a9;background:repeating-linear-gradient(90deg,var(--legend-stroke) 0 3px,transparent 3px 8px)
+}
+.service-map__legend-stroke.is-dependency{
+  --legend-stroke:#74929c;background:repeating-linear-gradient(90deg,var(--legend-stroke) 0 2px,transparent 2px 10px)
+}
+.service-map__legend-stroke.is-alert{--legend-stroke:#dfad70}
+.service-map__legend-stroke.is-response{--legend-stroke:#d9b283}
+.service-map__legend-stroke.is-improvement{--legend-stroke:#acb8e8}
+.service-map__legend-stroke.is-request::after,
+.service-map__legend-stroke.is-alert::after,
+.service-map__legend-stroke.is-response::after,
+.service-map__legend-stroke.is-improvement::after{
+  content:"";position:absolute;right:0;top:50%;width:5px;height:5px;
+  border-right:2px solid var(--legend-stroke);border-top:2px solid var(--legend-stroke);
+  transform:translateY(-50%) rotate(45deg)
+}
+/* Recupera altura do desenho redistribuindo espaços de elementos informativos. */
+.service-map__topline{padding-top:15px;padding-bottom:12px}
+.service-map__signals{padding-top:8px;padding-bottom:7px}
+.service-map__chapters{padding-top:5px;padding-bottom:0}
+.service-map__inspector{min-height:76px;padding-block:10px}
+.service-map__footer{padding-top:8px;padding-bottom:10px}
+@media(max-width:1350px) and (min-width:1001px){
+  .service-map__legend{padding:8px 12px;gap:9px}
+  .service-map__legend-title,.service-map__legend-items li{font-size:8px}
+  .service-map__legend-items{gap:5px 10px}
+}
+@media(max-width:1000px){
+  .service-map{height:555px}
+  .service-map__legend{padding:10px 12px;display:block}
+  .service-map__legend-title{display:block;border:none;padding:0 0 7px}
+  .service-map__legend-items{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px 5px}
+  .service-map__legend-items li{font-size:8px;gap:4px}
+  .service-map__legend-stroke{width:18px}
+}
+@media(max-width:390px){
+  .service-map{height:580px}
+  .service-map__legend-items{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(prefers-reduced-motion:reduce){.service-map__legend *{transition:none!important}}

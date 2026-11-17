@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#080d12">
-  <meta name="project-version" content="marcony-jr-v9-aligned-incident-map">
+  <meta name="project-version" content="marcony-jr-v9-2-legenda-conexoes">
   <meta name="description" content="Marcony Júnior — coordenação de TI, sustentação N2/N3, observabilidade, desenvolvimento de landing pages, sites, sistemas, SaaS e automações.">
   <meta property="og:title" content="Marcony Jr — Sustentação, Sistemas e Experiências Web">
   <meta property="og:description" content="Portfólio de Marcony Júnior. Infraestrutura, ITSM, engenharia de software e produtos digitais.">
@@ -13,18 +13,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css?v=9.1.0">
-  <link rel="stylesheet" href="./visual-v5.css?v=9.1.0">
-  <link rel="stylesheet" href="./service-map-v6.css?v=9.1.0">
-  <link rel="stylesheet" href="./hero-transition-v9.css?v=9.1.0">
-  <script src="./config.js?v=9.1.0" defer></script>
+  <link rel="stylesheet" href="./style.css?v=9.2.0">
+  <link rel="stylesheet" href="./visual-v5.css?v=9.2.0">
+  <link rel="stylesheet" href="./service-map-v6.css?v=9.2.0">
+  <link rel="stylesheet" href="./hero-transition-v9.css?v=9.2.0">
+  <script src="./config.js?v=9.2.0" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/ScrollTrigger.min.js" defer></script>
-  <script src="./main.js?v=9.1.0" defer></script>
-  <script src="./motion-v5.js?v=9.1.0" defer></script>
-  <script src="./service-map-v6.js?v=9.1.0" defer></script>
+  <script src="./main.js?v=9.2.0" defer></script>
+  <script src="./motion-v5.js?v=9.2.0" defer></script>
+  <script src="./service-map-v6.js?v=9.2.0" defer></script>
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js"}}</script>
-  <script type="module" src="./scene.js?v=9.1.0"></script>
+  <script type="module" src="./scene.js?v=9.2.0"></script>
 </head>
 <body>
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
@@ -113,6 +113,18 @@
           <div class="service-map__scene" id="service-map-scene">
             <svg class="service-map__wires" id="service-map-wires" viewBox="0 0 680 420" preserveAspectRatio="none" aria-hidden="true" focusable="false"></svg>
             <div class="service-map__nodes" id="service-map-nodes" role="group" aria-label="Selecione um serviço para conhecer sua função na arquitetura"></div>
+          </div>
+          <!-- Legenda das relações do Service Map; estilos correspondem às arestas de service-map-v6.js. -->
+          <div class="service-map__legend" role="group" aria-label="Legenda das conexões do mapa">
+            <span class="service-map__legend-title">LEGENDA</span>
+            <ul class="service-map__legend-items">
+              <li title="Fluxo de requisições: usuário, interface, API, aplicação e banco de dados."><span class="service-map__legend-stroke is-request" aria-hidden="true"></span>Requisição</li>
+              <li title="Sinais de monitoramento enviados à observabilidade: métricas, logs e traces."><span class="service-map__legend-stroke is-telemetry" aria-hidden="true"></span>Telemetria</li>
+              <li title="Dependência estrutural da aplicação em relação à infraestrutura; não indica tráfego."><span class="service-map__legend-stroke is-dependency" aria-hidden="true"></span>Dependência</li>
+              <li title="Alerta ou identificação de incidente encaminhado à triagem ITSM."><span class="service-map__legend-stroke is-alert" aria-hidden="true"></span>Alerta</li>
+              <li title="Coordenação da resposta e mitigação do incidente."><span class="service-map__legend-stroke is-response" aria-hidden="true"></span>Resposta</li>
+              <li title="Melhoria de software e serviços após estabilização; não é uma fase obrigatória para encerrar o incidente."><span class="service-map__legend-stroke is-improvement" aria-hidden="true"></span>Melhoria</li>
+            </ul>
           </div>
           <div class="service-map__inspector" aria-live="polite" aria-atomic="true">
             <span class="service-map__focus-marker" id="service-map-focus">01 / OBSERVAR</span>
