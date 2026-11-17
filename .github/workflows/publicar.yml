@@ -26,8 +26,10 @@ jobs:
         run: |
           test -f index.html
           test -f style.css
+          test -f visual-v5.css
           test -f config.js
           test -f main.js
+          test -f motion-v5.js
           test -f scene.js
           test -d assets/projetos
 

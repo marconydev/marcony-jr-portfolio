@@ -34,4 +34,4 @@ const server = http.createServer((req, res) => {
   });
 });
 server.on('error', err => { console.error('ERRO ao iniciar servidor:', err.message); process.exitCode = 1; });
-server.listen(port, '127.0.0.1', () => console.log(`MARCONY JR V4 disponivel em http://127.0.0.1:${port}\nPressione Ctrl+C para parar.`));
+server.listen(port, '127.0.0.1', () => console.log(`MARCONY JR V9 disponivel em http://127.0.0.1:${port}\nPressione Ctrl+C para parar.`));
