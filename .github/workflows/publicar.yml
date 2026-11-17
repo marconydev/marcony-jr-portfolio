@@ -1,0 +1,52 @@
+name: Publicar Marcony Jr no GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  preparar:
+    name: Preparar site estático
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+
+      - name: Conferir arquivos principais
+        run: |
+          test -f index.html
+          test -f style.css
+          test -f config.js
+          test -f main.js
+          test -f scene.js
+          test -d assets/projetos
+
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+
+      - name: Enviar arquivos da raiz
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: "."
+
+  publicar:
+    name: Publicar
+    needs: preparar
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publicar GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
