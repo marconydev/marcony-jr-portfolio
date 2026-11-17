@@ -1,0 +1,11 @@
+{
+  "name": "marcony-jr-portfolio",
+  "version": "9.1.0",
+  "private": true,
+  "description": "Portfólio Marcony Jr — Service Map Premium e narrativa com card persistente",
+  "scripts": {
+    "dev": "node servidor.cjs",
+    "start": "node servidor.cjs",
+    "check": "node --check scene.js && node --check main.js && node --check motion-v5.js && node --check service-map-v6.js"
+  }
+}

@@ -1,0 +1,281 @@
+/* Marcony Jr V6 · Design de produto: mapa legível e estado narrativo.
+   Camada reversível sobre o CSS anterior, sem alterar a copy ou imagens. */
+:root{--accent-focus:#a7e5d6;--accent-signal:#e5b77e}
+html{scroll-padding-top:90px}
+body{background:#080d12}
+/* Elimina o corredor vazio entre projetos e trajetória sem comprimir os cards. */
+.section{min-height:0!important;padding:58px max(5.2vw,24px) 68px!important}
+.section.about{min-height:0!important;padding-top:66px!important}
+.about-grid{padding-top:43px!important;gap:7%!important}
+.about-body{padding-top:20px!important}
+.about-visual{margin-top:58px!important}
+.section-heading{margin-top:34px!important;margin-bottom:35px!important}
+.section.history{padding-top:32px!important}
+.section.works,.section.expertise{padding-bottom:40px!important}
+.section.works .projects-note{margin:18px 0 0!important;max-width:720px}
+.section.contact{padding-top:38px!important;padding-bottom:80px!important}
+.contact-panel{margin-top:32px!important}
+.section-topline{padding-top:17px!important}
+.evidence-grid{margin-top:20px}
+.section:target{scroll-margin-top:91px}
+/* Abertura com ritmo suficiente para três capítulos, sem rolagem longa demais. */
+.enhanced .cine{height:322vh}
+.enhanced .phase{top:25%;}
+.phase{background:linear-gradient(118deg,rgba(10,22,29,.86),rgba(10,20,26,.66))!important;border-color:rgba(154,201,197,.18)!important;box-shadow:none!important}
+.cine-sticky{isolation:isolate}
+/* Cena Three.js atmosférica ao fundo, mapa DOM/SVG vem na frente. */
+.render-stage canvas{opacity:.52;filter:saturate(.7)}
+.render-stage.is-reading canvas{opacity:.17}
+.render-stage::before{background:linear-gradient(90deg,rgba(8,13,18,.95),rgba(8,13,18,.65) 47%,rgba(8,13,18,.46) 100%)}
+.topology-eyebrow,.topology-hud{display:none!important}
+/* Painel do mapa, sem brilho neon e com acabamento de produto real. */
+.service-map{
+  position:absolute;z-index:8;top:17%;right:max(4.3vw,32px);width:min(775px,51vw);
+  height:min(580px,67vh);min-height:450px;display:flex;flex-direction:column;
+  border:1px solid rgba(144,187,186,.26);border-radius:18px;
+  background:linear-gradient(154deg,rgba(11,24,30,.88),rgba(8,18,24,.80));
+  box-shadow:0 24px 80px rgba(0,0,0,.18),inset 0 1px 0 rgba(188,238,222,.04);
+  backdrop-filter:blur(11px);-webkit-backdrop-filter:blur(11px);
+  overflow:hidden;pointer-events:auto;transform:translateY(var(--scroll-shift,0px));
+  transition:border-color .28s ease;
+}
+.service-map:hover{border-color:rgba(156,221,208,.38)}
+.service-map__topline{padding:19px 24px 16px;display:flex;justify-content:space-between;align-items:center;gap:16px;border-bottom:1px solid rgba(162,199,197,.14);flex:none}
+.service-map__overline,.service-map__prototype,.service-map__focus-marker,.service-map__readout,.service-map__footer{
+  font:10px/1.5 var(--mono);letter-spacing:.09em;
+}
+.service-map__overline{display:flex;align-items:center;gap:10px;color:#d2e6e0}
+.map-live-indicator{width:7px;height:7px;border-radius:50%;background:#9dd8ca;box-shadow:0 0 0 4px rgba(120,204,184,.08)}
+.service-map__prototype{color:#9eaeb0;text-align:right;white-space:nowrap}
+.service-map__signals{display:flex;gap:18px;align-items:center;flex-wrap:wrap;padding:10px 24px 9px;border-bottom:1px solid rgba(162,199,197,.10);font:9px/1.3 var(--mono);letter-spacing:.06em;color:#7fabad}
+.service-map__signals span{display:inline-flex;gap:7px;align-items:center}
+.service-map__signals b{color:#c3e2dc;font-weight:500}
+.signal-dot{width:5px;height:5px;border-radius:50%;background:#9dd8ca;display:inline-block}
+.service-map[data-chapter="diagnose"] #service-map-alert{color:#e6c18b}
+.service-map[data-chapter="diagnose"] .signal-dot{background:#e1b879}
+.service-map__chapters{display:flex;align-items:center;gap:3px;padding:7px 18px 2px}
+.service-map__chapters button{font:9px var(--mono);letter-spacing:.07em;background:none;border:1px solid transparent;border-radius:5px;padding:6px 8px;color:#769e9c;cursor:pointer;transition:color .2s,border-color .2s,background .2s}
+.service-map__chapters button:hover,.service-map__chapters button:focus-visible{color:#d9f0e9;background:rgba(128,210,193,.10)}
+.service-map__chapters button.is-active{border-color:rgba(154,217,206,.26);color:#c9eddf;background:rgba(128,210,193,.09)}
+.service-map__scene{position:relative;min-height:0;flex:1;margin:8px 14px 2px;
+  background-image:linear-gradient(rgba(150,191,191,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(150,191,191,.035) 1px,transparent 1px);
+  background-size:33px 33px;mask-image:linear-gradient(to bottom,transparent,black 9%,black 90%,transparent);
+}
+.service-map__wires,.service-map__nodes{position:absolute;inset:0;width:100%;height:100%}
+.service-map__wires{overflow:visible;pointer-events:none}
+.service-map__edge{fill:none;stroke:#426b70;stroke-width:1.25;vector-effect:non-scaling-stroke;opacity:.46;transition:stroke .3s,opacity .3s,stroke-width .3s}
+.service-map__edge.is-contextual{stroke:#73b1a7;opacity:.65}
+.service-map__edge.is-route{stroke:#a3dbce;opacity:1;stroke-width:1.9}
+.service-map[data-chapter="diagnose"] .service-map__edge.is-investigating{stroke:#e0b87f;opacity:.93;stroke-width:2;stroke-dasharray:4 9;animation:flow-dash 4.5s linear infinite}
+.service-map__packet{fill:#a9e8d9;opacity:.9;filter:drop-shadow(0 0 2px rgba(162,232,213,.5))}
+.service-map[data-chapter="diagnose"] .service-map__packet{fill:#e9bb7e}
+@keyframes flow-dash{to{stroke-dashoffset:-52}}
+.service-map__node{position:absolute;left:var(--node-x);top:var(--node-y);transform:translate(-50%,-50%);
+  padding:5px 3px;width:104px;min-height:66px;border:none;background:transparent;color:#a8c2bf;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;
+  cursor:pointer;transition:color .2s ease,transform .2s ease;z-index:2;
+}
+.service-map__glyph{display:grid;place-items:center;width:42px;height:42px;border:1px solid rgba(139,178,184,.34);border-radius:11px;
+  background:#11262e;color:#b7d1cc;letter-spacing:.025em;font:11px var(--mono);
+  box-shadow:0 4px 13px rgba(0,0,0,.22);transition:border .2s,background .2s,color .2s,transform .2s;
+}
+.service-map__node-label{font:10px/1.25 var(--body);font-weight:650;letter-spacing:-.005em;white-space:nowrap;text-shadow:0 2px 5px #081218}
+.service-map__node:hover,.service-map__node:focus-visible{color:#effff6;z-index:4;transform:translate(-50%,-52%)}
+.service-map__node:hover .service-map__glyph,.service-map__node:focus-visible .service-map__glyph{
+  border-color:#a0d8cc;background:#1d3b40;color:#f0fff8;transform:translateY(-2px)
+}
+.service-map__node.is-contextual .service-map__glyph{border-color:rgba(164,221,205,.76);color:#d4f3e6}
+.service-map__node.is-selected .service-map__glyph{border-color:#b4f2e1;background:#235359;color:#f3fff8;box-shadow:0 0 0 5px rgba(136,210,191,.08)}
+.service-map[data-chapter="diagnose"] .service-map__node[data-node="gateway"] .service-map__glyph,
+.service-map[data-chapter="diagnose"] .service-map__node[data-node="itsm"] .service-map__glyph{
+  border-color:rgba(236,177,108,.91);color:#f3d6b0;background:#483828
+}
+.service-map__node:focus-visible{outline:none}
+.service-map__node:focus-visible .service-map__glyph{outline:2px solid #c5f0e1;outline-offset:5px}
+.service-map__inspector{display:grid;grid-template-columns:94px 1fr auto;align-items:center;gap:12px;flex:none;min-height:82px;
+  border-top:1px solid rgba(165,197,196,.17);padding:14px 24px;background:rgba(8,19,24,.55)}
+.service-map__focus-marker{color:#97c9c2;align-self:start;margin-top:4px}
+.service-map__inspect-text{min-width:0}
+.service-map__inspect-text strong{font-size:15px;line-height:1.3;font-weight:650;letter-spacing:-.025em;color:#ebf6f1}
+.service-map__inspect-text p{font:11px/1.6 var(--body);color:#a6bab9;margin:4px 0 0;max-width:370px}
+.service-map__readout{font-size:9px;color:#8ebeb3;text-align:right;max-width:125px}
+.service-map__footer{display:flex;justify-content:space-between;gap:14px;padding:10px 24px 12px;color:#6f999b;border-top:1px solid rgba(162,199,197,.12);font-size:9px}
+.service-map__footer span:last-child{color:#91b7b2}
+.service-map-mobile-slot{display:none}
+/* O conteúdo permanece central: sem invasão do mapa sobre títulos e cards. */
+@media (min-width:1001px) and (max-height:740px){
+  .service-map{top:16%;height:68vh;min-height:390px;width:min(730px,51vw)}
+  .service-map__inspector{min-height:68px;padding-block:9px}
+  .service-map__node{min-height:59px;gap:3px}
+  .service-map__glyph{height:35px;width:35px;font-size:10px}
+  .service-map__node-label{font-size:9px}
+}
+@media (min-width:1001px) and (max-width:1350px){
+  .service-map{right:2.1vw;width:50vw}
+  .service-map__prototype{font-size:8px}
+  .service-map__node{width:90px}
+  .service-map__glyph{width:37px;height:37px}
+  .service-map__node-label{font-size:9px}
+  .service-map__inspector{grid-template-columns:80px 1fr}
+  .service-map__readout{display:none}
+  .enhanced .phase{left:4vw;width:min(490px,43vw)}
+}
+@media (max-width:1000px){
+  /* No mobile, o mapa sai da cena sticky e entra como bloco próprio navegável. */
+  .service-map-mobile-slot{display:block;position:relative;padding:17px max(4vw,15px) 16px;max-width:900px;margin:0 auto}
+  .service-map{position:relative;inset:auto;transform:none!important;width:100%;height:515px;min-height:0;max-width:none;margin:0;border-radius:16px}
+  .service-map__scene{margin-inline:8px}
+  .service-map__topline{padding:15px 16px}
+  .service-map__inspector{padding:12px 16px;grid-template-columns:85px 1fr;gap:9px}
+  .service-map__readout{display:none}
+  .service-map__footer{padding:10px 16px;font-size:8px}
+  .section{padding-top:45px!important;padding-bottom:55px!important}
+  .section.about{padding-top:40px!important}
+  .about-grid{padding-top:32px!important}
+  .section-heading{margin-top:27px!important;margin-bottom:30px!important}
+  .contact-panel{margin-top:27px!important}
+  .enhanced .cine{height:305vh}
+}
+@media (max-width:560px){
+  .service-map{height:510px}
+  .service-map__chapters{gap:0;padding:4px 7px}
+  .service-map__chapters button{padding:6px 5px;letter-spacing:.015em;font-size:8px}
+  .service-map__topline{padding:12px;align-items:start;gap:10px}
+  .service-map__signals{padding:8px 12px;gap:8px;font-size:7px}
+  .service-map__overline{font-size:8px;letter-spacing:.015em}
+  .service-map__prototype{font-size:7px;white-space:normal;max-width:85px}
+  .service-map__glyph{width:32px;height:32px;border-radius:9px;font-size:9px}
+  .service-map__node{width:70px;min-height:54px;gap:5px}
+  .service-map__node-label{font-size:8px;letter-spacing:-.02em}
+  .service-map__inspector{grid-template-columns:65px 1fr;padding:10px 12px}
+  .service-map__focus-marker{font-size:8px}
+  .service-map__inspect-text strong{font-size:13px}
+  .service-map__inspect-text p{font-size:10px;line-height:1.35}
+  .service-map__footer{font-size:8px;display:block}
+  .service-map__footer span:last-child{display:none}
+  .section{padding-block:36px 46px!important}
+  .section.about{padding-top:32px!important}
+  .section-heading{margin-top:24px!important;margin-bottom:26px!important}
+  .about-grid{padding-top:26px!important}
+  .about-visual{margin-top:40px!important}
+}
+@media (prefers-reduced-motion:reduce){
+  .service-map,.service-map__node,.service-map__glyph,.service-map__edge{transition:none!important}
+  .service-map__edge.is-investigating{animation:none!important;stroke-dasharray:none!important}
+  .service-map__packet{display:none}
+}
+
+
+/* V7 · Fundo mais claro, leitura melhor e narrativa automática na abertura */
+:root{
+  --fundo:#0b1419;
+  --superficie:#13222b;
+  --superficie-2:#18303a;
+  --texto:#eef7f5;
+  --muted:#a4bdc0;
+  --acento:#88e2d6;
+  --line:rgba(178,220,219,.22);
+}
+body{
+  background:
+    radial-gradient(circle at 76% 18%, rgba(76,164,170,.14), transparent 24%),
+    radial-gradient(circle at 12% 84%, rgba(83,118,196,.09), transparent 28%),
+    linear-gradient(180deg,#0c151a,#0f1b22 42%,#0c151b 100%) !important;
+}
+.technical-pattern{
+  opacity:.42 !important;
+  background-image:linear-gradient(90deg,rgba(156,199,205,.065) 1px,transparent 1px),linear-gradient(0deg,rgba(156,199,205,.055) 1px,transparent 1px) !important;
+}
+.render-stage{opacity:1 !important}
+.render-stage canvas{opacity:.74 !important;filter:saturate(.96) brightness(1.12) !important}
+.render-stage.is-reading canvas{opacity:.32 !important}
+.render-stage::before{background:linear-gradient(90deg,rgba(12,21,26,.48),rgba(12,21,26,.18) 46%,rgba(12,21,26,.03) 100%) !important}
+.render-stage::after{
+  content:"";position:absolute;inset:auto 2% 10% auto;width:min(42vw,760px);height:min(42vw,760px);
+  border-radius:50%;background:radial-gradient(circle,rgba(104,208,201,.14),rgba(104,208,201,0) 64%);
+  filter:blur(8px);z-index:0;pointer-events:none;
+}
+.cine-sticky::before{background:linear-gradient(90deg,rgba(12,21,26,.36),rgba(12,21,26,.07) 44%,rgba(12,21,26,0) 100%) !important}
+.phase{
+  background:linear-gradient(145deg,rgba(17,34,42,.80),rgba(11,23,29,.66)) !important;
+  border-color:rgba(168,222,215,.20) !important;
+}
+.phase p{color:#c9dad9 !important}
+.service-map{
+  background:linear-gradient(154deg,rgba(16,33,41,.82),rgba(11,25,32,.72)) !important;
+  border-color:rgba(161,212,210,.32) !important;
+  box-shadow:0 26px 80px rgba(2,8,12,.22), inset 0 1px 0 rgba(214,249,240,.05) !important;
+}
+.service-map__signals{color:#96bcc0 !important}
+.service-map__scene{
+  background-image:linear-gradient(rgba(163,206,204,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(163,206,204,.06) 1px,transparent 1px) !important;
+}
+.service-map__edge{stroke:#558289 !important;opacity:.6 !important}
+.service-map__edge.is-contextual{stroke:#7bc2b6 !important;opacity:.78 !important}
+.service-map__edge.is-route{stroke:#b7f3e5 !important;opacity:1 !important;stroke-width:2.15 !important}
+.service-map__node{color:#b7d0cf !important}
+.service-map__glyph{background:#14313a !important;border-color:rgba(155,205,210,.42) !important;color:#d1ebe5 !important}
+.service-map__node.is-selected .service-map__glyph{background:#25535a !important;border-color:#c1fff0 !important;box-shadow:0 0 0 7px rgba(141,230,211,.08) !important}
+.service-map__inspector{background:rgba(10,22,28,.49) !important}
+.service-map[data-autoplay="true"] .service-map__prototype{color:#caece6 !important}
+.service-map[data-autoplay="true"] .map-live-indicator{box-shadow:0 0 0 5px rgba(136,225,207,.12),0 0 18px rgba(136,225,207,.28)}
+.topbar{background:rgba(10,18,24,.74) !important;border-bottom-color:rgba(190,224,226,.12) !important}
+.nav-contact{background:rgba(15,34,41,.36)}
+.nav-contact:hover{background:rgba(27,56,63,.68)}
+@media (max-width:1000px){
+  .render-stage{opacity:.88 !important}
+  .render-stage canvas{opacity:.58 !important}
+  .render-stage::before{background:linear-gradient(180deg,rgba(12,21,26,.16),rgba(12,21,26,.62) 80%) !important}
+}
+
+
+/* V8: painéis rigorosamente alinhados pela mesma coordenada vertical. */
+@media (min-width:1001px) {
+  .enhanced .phase {
+    top:17% !important;
+    min-height:450px;
+    height:min(580px,67vh);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:clamp(24px,2.2vw,40px);
+  }
+  .service-map {
+    top:17%;
+    height:min(580px,67vh);
+    min-height:450px;
+  }
+}
+@media (min-width:1001px) and (max-height:740px){
+  .enhanced .phase {
+    top:16% !important;
+    height:68vh;
+    min-height:390px;
+    padding:22px 28px;
+  }
+  .service-map{top:16%;height:68vh;min-height:390px}
+  .enhanced .phase h1,.enhanced .phase h2{font-size:clamp(39px,4.5vw,63px)}
+  .enhanced .phase p{line-height:1.56}
+  .enhanced .proof{margin-top:20px}
+}
+/* Semântica visual: requisição (contínuo), sinais (tracejado), alerta (âmbar), melhoria (lilás) */
+.service-map__edge--request{stroke:#76bfb9 !important;opacity:.7 !important;stroke-width:1.35 !important}
+.service-map__edge--telemetry{stroke:#68a6a9 !important;opacity:.53 !important;stroke-dasharray:3 7}
+.service-map__edge--dependency{stroke:#486d77 !important;opacity:.32 !important;stroke-dasharray:2 10}
+.service-map__edge--alert{stroke:#dfad70 !important;opacity:.62 !important}
+.service-map__edge--response{stroke:#d9b283 !important;opacity:.58 !important}
+.service-map__edge--improvement{stroke:#acb8e8 !important;opacity:.64 !important}
+.service-map__edge.is-contextual{stroke-width:1.9 !important;opacity:.85 !important}
+.service-map__edge.is-route{stroke-width:2.3 !important;opacity:1 !important}
+.service-map[data-chapter="diagnose"] .service-map__edge--alert.is-investigating,
+.service-map[data-chapter="diagnose"] .service-map__edge--response.is-investigating{
+  stroke:#e9bd83 !important;opacity:1 !important;stroke-width:2.3 !important;
+  stroke-dasharray:6 9;animation:flow-dash 3s linear infinite
+}
+.service-map[data-chapter="build"] .service-map__edge--improvement{stroke:#b5c4ff !important;opacity:1 !important;stroke-width:2.2 !important}
+@media (prefers-reduced-motion:reduce){.service-map__edge.is-investigating{animation:none!important}}
+@media (max-width:1000px){.enhanced .phase{min-height:initial;height:auto;display:block}}
+
+.service-map[data-chapter="build"] .service-map__packet{fill:#b9c9ff}
+.service-map__edge--dependency.is-contextual{opacity:.36!important}
+.service-map[data-chapter="diagnose"] .service-map__edge--telemetry.is-contextual{stroke:#d1af83!important}

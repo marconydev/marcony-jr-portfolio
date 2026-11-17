@@ -1,0 +1,77 @@
+/* Marcony Jr V9 — Moldura persistente, transição apenas do conteúdo.
+   Sobrescreve camadas V8 sem alterar o mapa, a paleta ou as outras seções. */
+.hero-copy-shell{display:contents}
+@media(min-width:769px){
+  .enhanced .hero-copy-shell{
+    position:absolute;
+    z-index:4;
+    left:max(5.2vw,24px);
+    top:17%;
+    width:min(540px,44vw);
+    height:min(580px,67vh);
+    min-height:450px;
+    display:block;
+    background:linear-gradient(145deg,rgba(17,34,42,.82),rgba(11,23,29,.68));
+    border:1px solid rgba(168,222,215,.22);
+    border-left:2px solid rgba(154,217,206,.77);
+    border-radius:7px 23px 23px 7px;
+    box-shadow:0 15px 48px rgba(2,11,15,.11);
+    backdrop-filter:blur(9px);
+    -webkit-backdrop-filter:blur(9px);
+    overflow:hidden;
+    pointer-events:none;
+    isolation:isolate;
+  }
+  .enhanced .hero-copy-shell::after{
+    content:"";
+    position:absolute;
+    left:0;right:0;bottom:0;
+    height:2px;
+    background:linear-gradient(90deg,rgba(136,226,214,.58),rgba(136,226,214,.12),transparent 84%);
+    pointer-events:none;
+  }
+  /* A borda e o fundo pertencem SOMENTE ao shell estável. */
+  .enhanced .hero-copy-shell .phase,
+  .enhanced .hero-copy-shell .phase.phase-2,
+  .enhanced .hero-copy-shell .phase.phase-3{
+    position:absolute!important;
+    inset:0!important;
+    left:0!important;
+    top:0!important;
+    width:100%!important;
+    height:100%!important;
+    min-height:0!important;
+    max-width:none!important;
+    transform:none;
+    padding:clamp(24px,2.2vw,40px)!important;
+    background:transparent!important;
+    border:none!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+    display:flex!important;
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-start;
+    pointer-events:none;
+    will-change:opacity,transform;
+  }
+  .enhanced .hero-copy-shell .phase .primary-button{pointer-events:auto}
+}
+@media (min-width:1001px) and (max-width:1350px){
+  .enhanced .hero-copy-shell{left:4vw;width:min(490px,43vw)}
+}
+@media (min-width:769px) and (max-height:740px){
+  .enhanced .hero-copy-shell{top:16%;height:68vh;min-height:390px}
+  .enhanced .hero-copy-shell .phase{padding:22px 28px!important}
+  .enhanced .hero-copy-shell .phase h1,
+  .enhanced .hero-copy-shell .phase h2{font-size:clamp(39px,4.5vw,63px)}
+}
+/* Em telas menores a apresentação mantém a leitura linear, sem esconder texto. */
+@media(max-width:768px){
+  .hero-copy-shell{display:contents}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-copy-shell{display:contents!important}
+}

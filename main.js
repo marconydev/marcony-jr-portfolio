@@ -23,23 +23,64 @@ menuButton?.addEventListener('click',()=>{
 });
 mobileNav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileNav.hidden=true;menuButton.setAttribute('aria-expanded','false');}));
 
-// 3 capitulos no hero; o THREE usa a rolagem global, independentemente desta timeline.
+// Um único painel na abertura. O contêiner nunca desaparece;
+// apenas as camadas de texto cruzam com fade/translate durante o scroll.
+// GSAP é progressivo: sem a biblioteca ou com reduced-motion, os conteúdos
+// continuam no fluxo normal e plenamente acessíveis.
 if(window.gsap && window.ScrollTrigger && cine && phases.length===3){
   gsap.registerPlugin(ScrollTrigger);
   const mm=gsap.matchMedia();
   mm.add('(min-width: 769px) and (prefers-reduced-motion: no-preference)',()=>{
     document.body.classList.add('enhanced');
-    phases.forEach((el,i)=>{el.inert=i!==0;el.setAttribute('aria-hidden',String(i!==0));});
-    const setPhase=(i)=>{phases.forEach((el,j)=>{el.inert=j!==i;el.setAttribute('aria-hidden',String(j!==i));});};
-    gsap.set(phases[0],{opacity:1,visibility:'visible',y:0});
-    gsap.set(phases.slice(1),{opacity:0,visibility:'hidden',y:25});
-    const tl=gsap.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:cine,start:'top top',end:'bottom bottom',scrub:.6,onUpdate(self){indicator.style.height=`${(self.progress*100).toFixed(2)}%`;setPhase(self.progress<.32?0:self.progress<.65?1:2);}}});
-    tl.to({}, {duration:1},0);
-    tl.to(phases[0],{opacity:0,y:-20,visibility:'hidden',duration:.12},.26);
-    tl.fromTo(phases[1],{opacity:0,y:24,visibility:'hidden'},{opacity:1,y:0,visibility:'visible',immediateRender:false,duration:.12},.34);
-    tl.to(phases[1],{opacity:0,y:-20,visibility:'hidden',duration:.12},.57);
-    tl.fromTo(phases[2],{opacity:0,y:24,visibility:'hidden'},{opacity:1,y:0,visibility:'visible',immediateRender:false,duration:.12},.67);
-    return ()=>{document.body.classList.remove('enhanced');indicator.style.height='0';phases.forEach(el=>{el.inert=false;el.removeAttribute('aria-hidden');});gsap.set(phases,{clearProps:'all'});};
+    const shell=document.querySelector('.hero-copy-shell');
+    const getIndex=(progress)=>progress<.32?0:progress<.65?1:2;
+    let active=-1;
+    // Inicializa todas as camadas na mesma área. A estrutura externa
+    // (.hero-copy-shell) não recebe qualquer animação de opacidade.
+    gsap.set(phases,{autoAlpha:0,y:14});
+    const showPhase=(next,immediate=false)=>{
+      if(next===active)return;
+      const previous=active;
+      active=next;
+      shell?.setAttribute('data-phase',String(next+1));
+      gsap.killTweensOf(phases);
+      phases.forEach((el,i)=>{
+        const isCurrent=i===next;
+        el.inert=!isCurrent;
+        el.setAttribute('aria-hidden',String(!isCurrent));
+      });
+      if(immediate){
+        phases.forEach((el,i)=>gsap.set(el,{autoAlpha:i===next?1:0,y:0}));
+        return;
+      }
+      // Crossfade curto e sobreposto, sem estado em que ambos ficam invisíveis.
+      // O novo texto entra levemente de baixo e o anterior sai alguns pixels.
+      phases.forEach((el,i)=>{
+        if(i!==next && i!==previous)gsap.set(el,{autoAlpha:0,y:0});
+      });
+      if(previous!==-1){
+        gsap.to(phases[previous],{autoAlpha:0,y:-10,duration:.28,ease:'power2.inOut',overwrite:'auto'});
+      }
+      gsap.fromTo(phases[next],{autoAlpha:0,y:15},{autoAlpha:1,y:0,duration:.48,ease:'power3.out',overwrite:'auto',immediateRender:false});
+    };
+    const trigger=ScrollTrigger.create({
+      trigger:cine,start:'top top',end:'bottom bottom',
+      onUpdate(self){
+        if(indicator)indicator.style.height=`${(self.progress*100).toFixed(2)}%`;
+        showPhase(getIndex(self.progress));
+      },
+      onRefresh(self){showPhase(getIndex(self.progress),true);}
+    });
+    showPhase(getIndex(trigger.progress),true);
+    return ()=>{
+      trigger.kill();
+      document.body.classList.remove('enhanced');
+      if(indicator)indicator.style.height='0';
+      phases.forEach(el=>{el.inert=false;el.removeAttribute('aria-hidden');});
+      shell?.removeAttribute('data-phase');
+      gsap.killTweensOf(phases);
+      gsap.set(phases,{clearProps:'all'});
+    };
   });
 }
 

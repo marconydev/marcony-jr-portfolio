@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#080d12">
-  <meta name="project-version" content="marcony-jr-v4-original-screenshots">
+  <meta name="project-version" content="marcony-jr-v9-aligned-incident-map">
   <meta name="description" content="Marcony Júnior — coordenação de TI, sustentação N2/N3, observabilidade, desenvolvimento de landing pages, sites, sistemas, SaaS e automações.">
   <meta property="og:title" content="Marcony Jr — Sustentação, Sistemas e Experiências Web">
   <meta property="og:description" content="Portfólio de Marcony Júnior. Infraestrutura, ITSM, engenharia de software e produtos digitais.">
@@ -13,21 +13,44 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css?v=4.0.0">
-  <script src="./config.js?v=4.0.0" defer></script>
+  <link rel="stylesheet" href="./style.css?v=9.1.0">
+  <link rel="stylesheet" href="./visual-v5.css?v=9.1.0">
+  <link rel="stylesheet" href="./service-map-v6.css?v=9.1.0">
+  <link rel="stylesheet" href="./hero-transition-v9.css?v=9.1.0">
+  <script src="./config.js?v=9.1.0" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/ScrollTrigger.min.js" defer></script>
-  <script src="./main.js?v=4.0.0" defer></script>
+  <script src="./main.js?v=9.1.0" defer></script>
+  <script src="./motion-v5.js?v=9.1.0" defer></script>
+  <script src="./service-map-v6.js?v=9.1.0" defer></script>
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js"}}</script>
-  <script type="module" src="./scene.js?v=4.0.0"></script>
+  <script type="module" src="./scene.js?v=9.1.0"></script>
 </head>
 <body>
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
   <div class="technical-pattern" aria-hidden="true"></div>
   <!-- A cena fica FORA do hero para permanecer fixa em toda a rolagem. -->
   <div class="render-stage" aria-hidden="true">
+    <svg class="topology-fallback" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" focusable="false">
+      <g transform="translate(835,345)" fill="none" stroke="#508a87" stroke-width="1.4" opacity=".67">
+        <path d="M-245 -128L-114 -128 0 -76 138 -116 228 -28 123 28 0 0 -122 4 -258 16M-258 16L-225 145 -110 145 0 0 132 104 228 114M-122 4L-110 145M0 0L123 28M0 -76L0 0"/>
+      </g>
+      <g transform="translate(835,345)" fill="#86cbbf" stroke="#b2e8d9" stroke-width="1.5">
+        <circle cx="-245" cy="-128" r="5"/><circle cx="-114" cy="-128" r="6"/><circle cx="0" cy="-76" r="7"/>
+        <circle cx="138" cy="-116" r="5"/><circle cx="228" cy="-28" r="5"/><circle cx="123" cy="28" r="5"/>
+        <circle cx="0" cy="0" r="9"/><circle cx="-122" cy="4" r="6"/><circle cx="-258" cy="16" r="5"/>
+        <circle cx="-225" cy="145" r="4"/><circle cx="-110" cy="145" r="6"/><circle cx="132" cy="104" r="5"/><circle cx="228" cy="114" r="4"/>
+      </g>
+      <g transform="translate(835,345)" fill="none" stroke="#9ddcd0" stroke-width="1" opacity=".35"><circle cx="0" cy="0" r="22"/><circle cx="0" cy="-76" r="16"/><circle cx="-122" cy="4" r="13"/></g>
+    </svg>
     <canvas id="scene3d"></canvas>
-    <div class="render-fallback"></div>
+    <span class="topology-eyebrow">ARQUITETURA DE SERVIÇOS</span>
+    <div class="topology-hud">
+      <div class="topology-hud-header"><span>SERVICE MAP / CONCEITO</span><i></i></div>
+      <strong id="topology-state">Topologia de serviços</strong>
+      <p id="topology-caption">Infraestrutura, aplicações e dados conectados</p>
+      <span class="topology-disclaimer">Visualização conceitual · Sem dados em tempo real</span>
+    </div>
   </div>
   <div id="tech-pointer" class="tech-pointer" aria-hidden="true"><span></span></div>
   <header class="topbar">
@@ -50,6 +73,7 @@
       <div class="cine-sticky">
         <div class="stage-decor stage-top"><span>JOÃO PESSOA · BRASIL</span></div>
         <div class="phase-container">
+          <div class="hero-copy-shell" aria-label="Apresentação profissional">
           <article class="phase phase-1">
             <div class="phase-meta"><span class="mono-index">01 / 03</span><span>SUSTENTAÇÃO E OBSERVABILIDADE</span></div>
             <h1 id="headline">Engenharia que <em>sustenta</em> operações.</h1>
@@ -68,11 +92,44 @@
             <p>Landing pages, sites, sistemas web, plataformas SaaS, automações e integrações de IA.</p>
             <a class="primary-button tech-hover" data-tech-hover href="#projetos">VER O QUE CONSTRUO <span aria-hidden="true">↗</span></a>
           </article>
+          </div>
         </div>
+        <!-- Mapa de serviços interativo: estados narrativos simulados, nunca telemetria real. -->
+        <aside class="service-map" id="service-map" aria-label="Mapa interativo ilustrativo de dependências entre serviços" data-chapter="observe">
+          <div class="service-map__topline">
+            <div class="service-map__overline"><span class="map-live-indicator" aria-hidden="true"></span> ARQUITETURA · MAPA DE SERVIÇOS</div>
+            <span class="service-map__prototype">SIMULAÇÃO CONCEITUAL</span>
+          </div>
+          <div class="service-map__signals" aria-label="Caminhos e sinais de cenário demonstrativo">
+            <span><i class="signal-dot" aria-hidden="true"></i> MAPA <b id="service-map-health">SERVIÇOS</b></span>
+            <span>FLUXOS <b>REQUISIÇÃO + TELEMETRIA</b></span>
+            <span>ETAPA <b id="service-map-alert">TELEMETRIA</b></span>
+          </div>
+          <div class="service-map__chapters" role="group" aria-label="Explorar os estados da arquitetura">
+            <button type="button" class="is-active" data-map-step="observe" aria-pressed="true">01 OBSERVAR</button>
+            <button type="button" data-map-step="diagnose" aria-pressed="false">02 DIAGNOSTICAR</button>
+            <button type="button" data-map-step="build" aria-pressed="false">03 CONSTRUIR</button>
+          </div>
+          <div class="service-map__scene" id="service-map-scene">
+            <svg class="service-map__wires" id="service-map-wires" viewBox="0 0 680 420" preserveAspectRatio="none" aria-hidden="true" focusable="false"></svg>
+            <div class="service-map__nodes" id="service-map-nodes" role="group" aria-label="Selecione um serviço para conhecer sua função na arquitetura"></div>
+          </div>
+          <div class="service-map__inspector" aria-live="polite" aria-atomic="true">
+            <span class="service-map__focus-marker" id="service-map-focus">01 / OBSERVAR</span>
+            <div class="service-map__inspect-text">
+              <strong id="service-map-name">Observabilidade</strong>
+              <p id="service-map-description">Métricas, logs e traces ajudam a identificar sintomas e as dependências envolvidas.</p>
+            </div>
+            <span class="service-map__readout" id="service-map-readout">MAPEANDO FLUXOS</span>
+          </div>
+          <div class="service-map__footer"><span>09 COMPONENTES · 12 RELAÇÕES</span><span>ESCOLHA UM NÓ PARA EXPLORAR <span aria-hidden="true">↗</span></span></div>
+        </aside>
         <div class="stage-decor stage-bottom"><span class="scroll-direction"><span class="scroll-line"></span> CONHEÇA MEU TRABALHO</span></div>
         <div class="scroll-progress" aria-hidden="true"><span id="scroll-indicator"></span></div>
       </div>
     </section>
+
+    <div class="service-map-mobile-slot" id="service-map-mobile-slot" aria-label="Topologia de serviços para telas menores"></div>
 
     <section class="section about" id="sobre" aria-labelledby="sobre-title">
       <div class="section-topline"><span><b>01</b> SOBRE</span><span>QUEM SOU E COMO TRABALHO</span></div>
