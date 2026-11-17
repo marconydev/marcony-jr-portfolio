@@ -1,0 +1,12 @@
+CAPTURAS REAIS JA INCLUIDAS
+- frotas.webp        <- Frota.png
+- barbearias.webp    <- Barbearia.png
+- ats.webp           <- JobSearch - ATS.png
+
+FALTAM (serao inseridas automaticamente quando fornecidas):
+- pdv.webp
+- bi-hospitalar.webp
+
+O site tambem reconhece .png, .jpg e .jpeg, nesta ordem de prioridade:
+.webp, .png, .jpg, .jpeg.
+Evite dados pessoais, segredos, senhas ou informacoes de pacientes em capturas.

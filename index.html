@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#080d12">
+  <meta name="project-version" content="marcony-jr-v4-original-screenshots">
+  <meta name="description" content="Marcony Júnior — coordenação de TI, sustentação N2/N3, observabilidade, desenvolvimento de landing pages, sites, sistemas, SaaS e automações.">
+  <meta property="og:title" content="Marcony Jr — Sustentação, Sistemas e Experiências Web">
+  <meta property="og:description" content="Portfólio de Marcony Júnior. Infraestrutura, ITSM, engenharia de software e produtos digitais.">
+  <meta property="og:type" content="website">
+  <title>Marcony Jr | Sistemas & Experiências Web</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css?v=4.0.0">
+  <script src="./config.js?v=4.0.0" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/ScrollTrigger.min.js" defer></script>
+  <script src="./main.js?v=4.0.0" defer></script>
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js"}}</script>
+  <script type="module" src="./scene.js?v=4.0.0"></script>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+  <div class="technical-pattern" aria-hidden="true"></div>
+  <!-- A cena fica FORA do hero para permanecer fixa em toda a rolagem. -->
+  <div class="render-stage" aria-hidden="true">
+    <canvas id="scene3d"></canvas>
+    <div class="render-fallback"></div>
+  </div>
+  <div id="tech-pointer" class="tech-pointer" aria-hidden="true"><span></span></div>
+  <header class="topbar">
+    <a class="brand-type tech-hover" data-tech-hover href="#inicio" aria-label="Marcony Jr — início">MARCONY <strong>JR</strong></a>
+    <nav class="desktop-nav" aria-label="Navegação principal">
+      <a class="tech-hover" data-tech-hover href="#sobre"><span>01</span>Sobre</a>
+      <a class="tech-hover" data-tech-hover href="#especialidades"><span>02</span>Especialidades</a>
+      <a class="tech-hover" data-tech-hover href="#projetos"><span>03</span>Projetos</a>
+      <a class="tech-hover" data-tech-hover href="#trajetoria"><span>04</span>Trajetória</a>
+    </nav>
+    <a class="nav-contact tech-hover" data-tech-hover href="#contato">FALE COMIGO <span aria-hidden="true">↗</span></a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menu"><span></span><span></span></button>
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Navegação mobile" hidden>
+      <a href="#sobre">Sobre</a><a href="#especialidades">Especialidades</a><a href="#projetos">Projetos</a><a href="#trajetoria">Trajetória</a><a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <main id="conteudo">
+    <section class="cine" id="inicio" aria-labelledby="headline">
+      <div class="cine-sticky">
+        <div class="stage-decor stage-top"><span>JOÃO PESSOA · BRASIL</span></div>
+        <div class="phase-container">
+          <article class="phase phase-1">
+            <div class="phase-meta"><span class="mono-index">01 / 03</span><span>SUSTENTAÇÃO E OBSERVABILIDADE</span></div>
+            <h1 id="headline">Engenharia que <em>sustenta</em> operações.</h1>
+            <p>Suporte N2/N3, coordenação de TI, análise de causa raiz e continuidade de sistemas críticos.</p>
+            <div class="proof"><span><strong>+5 anos</strong> em tecnologia</span><span class="proof-dot"></span><span>ITIL · RCA · SLA</span></div>
+          </article>
+          <article class="phase phase-2">
+            <div class="phase-meta"><span class="mono-index">02 / 03</span><span>PROCESSOS, ITSM E DADOS</span></div>
+            <h2>Do sinal ao <em>diagnóstico.</em></h2>
+            <p>Indicadores, fluxos operacionais, atendimento estruturado e governança para decisões rastreáveis.</p>
+            <div class="proof"><span>JIRA · BPMN</span><span class="proof-dot"></span><span>POSTGRESQL · POWER BI</span></div>
+          </article>
+          <article class="phase phase-3">
+            <div class="phase-meta"><span class="mono-index">03 / 03</span><span>WEB, SISTEMAS E IA</span></div>
+            <h2>Do projeto ao <em>produto digital.</em></h2>
+            <p>Landing pages, sites, sistemas web, plataformas SaaS, automações e integrações de IA.</p>
+            <a class="primary-button tech-hover" data-tech-hover href="#projetos">VER O QUE CONSTRUO <span aria-hidden="true">↗</span></a>
+          </article>
+        </div>
+        <div class="stage-decor stage-bottom"><span class="scroll-direction"><span class="scroll-line"></span> CONHEÇA MEU TRABALHO</span></div>
+        <div class="scroll-progress" aria-hidden="true"><span id="scroll-indicator"></span></div>
+      </div>
+    </section>
+
+    <section class="section about" id="sobre" aria-labelledby="sobre-title">
+      <div class="section-topline"><span><b>01</b> SOBRE</span><span>QUEM SOU E COMO TRABALHO</span></div>
+      <div class="about-grid">
+        <div class="about-intro"><p class="eyebrow">MARCONY JÚNIOR / MHSSJR</p><h2 id="sobre-title">Experiência de operação. <em>Visão de produto.</em></h2><p class="section-deck">A mesma disciplina usada para manter operações críticas também orienta o desenvolvimento de software.</p></div>
+        <div class="about-body">
+          <p>Sou profissional de TI com atuação em coordenação de equipes, suporte especializado N2/N3, infraestrutura, ITSM e observabilidade. Levo esse repertório para a criação de <strong>landing pages, sites e sistemas web</strong> orientados à operação real.</p>
+          <p>Trabalho do levantamento de requisitos e desenho de fluxos à implementação, análise de logs, testes de APIs e acompanhamento de indicadores.</p>
+          <div class="location-line"><span class="location-pulse"></span> João Pessoa, PB · Projetos remotos e consultoria</div>
+        </div>
+      </div>
+      <div class="evidence-heading"><span>RECORTE DE EXPERIÊNCIA REAL</span><span>HOSPITAL PADRE ZÉ</span></div>
+      <div class="evidence-grid">
+        <article class="evidence"><div class="evidence-label">01 / REIMPLANTAÇÃO</div><div class="evidence-value">100<span>+</span></div><h3>Usuários treinados</h3><p>Responsável local pela reimplantação do ERP Wareline, com treinamento de mais de 100 usuários.</p></article>
+        <article class="evidence"><div class="evidence-label">02 / SLA</div><div class="evidence-value">96,3<span>%</span></div><h3>Chamados no prazo</h3><p>Resolução dentro do SLA de 24 horas na operação hospitalar acompanhada.</p></article>
+        <article class="evidence"><div class="evidence-label">03 / PRIMEIRA AÇÃO</div><div class="evidence-value">98<span>%</span></div><h3>Iniciados em até 2h</h3><p>Indicador de início de atendimento em contexto de 15 a 17 chamados críticos diários.</p></article>
+        <article class="evidence"><div class="evidence-label">04 / ITSM & LIDERANÇA</div><div class="evidence-value">05</div><h3>Profissionais coordenados</h3><p>Estruturação do Service Desk no Jira, gestão de incidentes e acompanhamento da equipe.</p></article>
+      </div>
+      <p class="evidence-note">* Indicadores históricos da atuação no Hospital Padre Zé, conforme currículo profissional. Não representam promessa de desempenho futuro.</p>
+    </section>
+
+    <section class="section expertise" id="especialidades" aria-labelledby="especialidades-title">
+      <div class="section-topline"><span><b>02</b> ESPECIALIDADES</span><span>ONDE POSSO CONTRIBUIR</span></div>
+      <div class="section-heading"><div><p class="eyebrow">ATUAÇÃO TÉCNICA</p><h2 id="especialidades-title">Da infraestrutura ao <em>software.</em></h2></div><p class="heading-aside">Quatro frentes de trabalho, conectadas pelo entendimento da operação e do usuário.</p></div>
+      <div class="capabilities">
+        <article class="capability"><div class="cap-num">01</div><div><h3>Sistemas críticos & observabilidade</h3><p>Suporte avançado, investigação de incidentes, monitoramento e continuidade de ambientes corporativos.</p></div><div class="skills">N2/N3 · ZABBIX · GRAFANA · ELASTIC · RCA</div></article>
+        <article class="capability"><div class="cap-num">02</div><div><h3>ITSM, processos & dados</h3><p>Service Desk, fluxos BPMN, gestão de SLA, indicadores, relatórios e análise operacional.</p></div><div class="skills">JIRA · ITIL · BPMN · SQL · POWER BI</div></article>
+        <article class="capability"><div class="cap-num">03</div><div><h3>Landing pages & sites</h3><p>Páginas comerciais, apresentações digitais e interfaces responsivas com animações, usabilidade e foco em conversão.</p></div><div class="skills">WEB DESIGN · UX · RESPONSIVIDADE · SEO</div></article>
+        <article class="capability"><div class="cap-num">04</div><div><h3>Sistemas web, SaaS & automações</h3><p>Aplicações administrativas, PWAs, APIs, bancos de dados, integrações e fluxos com IA aplicada.</p></div><div class="skills">TYPESCRIPT · PYTHON · POSTGRESQL · SUPABASE · IA</div></article>
+      </div>
+    </section>
+
+    <section class="section works" id="projetos" aria-labelledby="projetos-title">
+      <div class="section-topline"><span><b>03</b> PROJETOS</span><span>SISTEMAS E CASES TÉCNICOS</span></div>
+      <div class="section-heading works-heading"><div><p class="eyebrow">PORTFÓLIO TÉCNICO</p><h2 id="projetos-title">Arquitetura aplicada a <em>problemas concretos.</em></h2></div><p class="heading-aside">Interfaces reais dos sistemas desenvolvidos. Novas capturas podem ser adicionadas diretamente à pasta do projeto.</p></div>
+      <div class="projects">
+        <article class="project project-featured" data-project="frotas">
+          <div class="project-art has-shot" data-project-image="frotas"><img src="./assets/projetos/Frota.png" alt="Captura real do sistema de gestão de frotas" loading="lazy" decoding="async"><div class="shot-placeholder" aria-hidden="true"><span class="shot-cross">+</span><span>FROTAS / PWA</span><small>CAPTURA REAL DO SISTEMA<br>AGUARDANDO ARQUIVO</small></div><span class="art-label">01 / CONTROLE OPERACIONAL</span></div>
+          <div class="project-content"><p class="project-n">01 / GESTÃO PÚBLICA</p><h3>Gestão de frotas municipais</h3><p>Abastecimento, verificação fotográfica de hodômetro, check-in/out, horímetro e rastreabilidade de operações conforme a Lei 14.133.</p><div class="tag-row"><span>PWA</span><span>FROTAS</span><span>PROCESSOS</span></div><div class="project-actions"><a class="repo-link tech-hover" data-tech-hover data-repo="frotas" href="https://github.com/marconydev?tab=repositories" target="_blank" rel="noopener noreferrer" aria-label="Ver todos os repositórios de Marcony Jr no GitHub">VER TODOS OS REPOSITÓRIOS <span aria-hidden="true">↗</span></a><a class="screenshot-link tech-hover" data-tech-hover href="./assets/projetos/Frota.png" target="_blank" rel="noopener noreferrer" aria-label="Ver captura real de Gestão de Frotas">VER CAPTURA <span aria-hidden="true">↗</span></a></div></div>
+        </article>
+        <article class="project" data-project="barbearias">
+          <div class="project-art has-shot" data-project-image="barbearias"><img src="./assets/projetos/Barbearia.png" alt="Captura real da plataforma SaaS para barbearias" loading="lazy" decoding="async"><div class="shot-placeholder" aria-hidden="true"><span class="shot-cross">+</span><span>SAAS / MULTI-TENANT</span><small>CAPTURA REAL DO SISTEMA<br>AGUARDANDO ARQUIVO</small></div><span class="art-label">02 / AGENDAMENTOS</span></div>
+          <div class="project-content"><p class="project-n">02 / PLATAFORMA SAAS</p><h3>SaaS para barbearias</h3><p>Fila virtual, agendamentos, lembretes automatizados e isolamento entre clientes com Supabase RLS.</p><div class="tag-row"><span>SUPABASE</span><span>RLS</span><span>WHATSAPP</span></div><div class="project-actions"><a class="repo-link tech-hover" data-tech-hover data-repo="barbearias" href="https://github.com/marconydev?tab=repositories" target="_blank" rel="noopener noreferrer" aria-label="Ver todos os repositórios de Marcony Jr no GitHub">VER TODOS OS REPOSITÓRIOS <span aria-hidden="true">↗</span></a><a class="screenshot-link tech-hover" data-tech-hover href="./assets/projetos/Barbearia.png" target="_blank" rel="noopener noreferrer" aria-label="Ver captura real de Plataforma para Barbearia">VER CAPTURA <span aria-hidden="true">↗</span></a></div></div>
+        </article>
+        <article class="project" data-project="ats">
+          <div class="project-art has-shot" data-project-image="ats"><img src="./assets/projetos/JobSearch%20-%20ATS.png" alt="Captura real do motor ATS de matching de vagas" loading="lazy" decoding="async"><div class="shot-placeholder" aria-hidden="true"><span class="shot-cross">+</span><span>PYTHON / MATCHING</span><small>CAPTURA REAL DO SISTEMA<br>AGUARDANDO ARQUIVO</small></div><span class="art-label">03 / AUTOMAÇÃO</span></div>
+          <div class="project-content"><p class="project-n">03 / INTELIGÊNCIA DE VAGAS</p><h3>Motor ATS & matching</h3><p>Coleta automatizada, critérios determinísticos de pontuação e busca semântica para oportunidades profissionais.</p><div class="tag-row"><span>PYTHON</span><span>ATS</span><span>IA</span></div><div class="project-actions"><a class="repo-link tech-hover" data-tech-hover data-repo="ats" href="https://github.com/marconydev?tab=repositories" target="_blank" rel="noopener noreferrer" aria-label="Ver todos os repositórios de Marcony Jr no GitHub">VER TODOS OS REPOSITÓRIOS <span aria-hidden="true">↗</span></a><a class="screenshot-link tech-hover" data-tech-hover href="./assets/projetos/JobSearch%20-%20ATS.png" target="_blank" rel="noopener noreferrer" aria-label="Ver captura real de Job Search ATS">VER CAPTURA <span aria-hidden="true">↗</span></a></div></div>
+        </article>
+        <article class="project" data-project="pdv">
+          <div class="project-art" data-project-image="pdv"><img alt="Captura real do sistema de PDV e gestão administrativa" loading="lazy" decoding="async"><div class="shot-placeholder" aria-hidden="true"><span class="shot-cross">+</span><span>LOCAL-FIRST / LAN</span><small>CAPTURA REAL DO SISTEMA<br>AGUARDANDO ARQUIVO</small></div><span class="art-label">04 / SOFTWARE DE GESTÃO</span></div>
+          <div class="project-content"><p class="project-n">04 / OPERAÇÃO LOCAL</p><h3>PDV & gestão administrativa</h3><p>Projeto de aplicação local-first para operação em rede LAN, PostgreSQL e arquitetura preparada para impressão ESC/POS.</p><div class="tag-row"><span>NODE.JS</span><span>POSTGRESQL</span><span>LAN</span></div><div class="project-actions"><a class="repo-link tech-hover" data-tech-hover data-repo="pdv" href="https://github.com/marconydev?tab=repositories" target="_blank" rel="noopener noreferrer" aria-label="Ver todos os repositórios de Marcony Jr no GitHub">VER TODOS OS REPOSITÓRIOS <span aria-hidden="true">↗</span></a></div></div>
+        </article>
+        <article class="project" data-project="bi-hospitalar">
+          <div class="project-art" data-project-image="bi-hospitalar"><img alt="Captura real dos painéis de BI hospitalar" loading="lazy" decoding="async"><div class="shot-placeholder" aria-hidden="true"><span class="shot-cross">+</span><span>BI / GOVERNANÇA</span><small>CAPTURA REAL DO SISTEMA<br>AGUARDANDO ARQUIVO</small></div><span class="art-label">05 / DADOS</span></div>
+          <div class="project-content"><p class="project-n">05 / ANÁLISE FINANCEIRA</p><h3>BI hospitalar</h3><p>Análise de despesas, estoques, fornecedores e informações financeiras para apoio à gestão hospitalar.</p><div class="tag-row"><span>POWER BI</span><span>INDICADORES</span><span>DADOS</span></div><div class="project-actions"><a class="repo-link tech-hover" data-tech-hover data-repo="bi-hospitalar" href="https://github.com/marconydev?tab=repositories" target="_blank" rel="noopener noreferrer" aria-label="Ver todos os repositórios de Marcony Jr no GitHub">VER TODOS OS REPOSITÓRIOS <span aria-hidden="true">↗</span></a></div></div>
+        </article>
+      </div>
+      <p class="projects-note">As capturas de Frotas, Barbearia e Motor ATS foram fornecidas pelo autor. Os demais projetos receberão imagens reais quando estiverem disponíveis.</p>
+    </section>
+
+    <section class="section history" id="trajetoria" aria-labelledby="trajetoria-title">
+      <div class="section-topline"><span><b>04</b> TRAJETÓRIA</span><span>EXPERIÊNCIA PROFISSIONAL</span></div>
+      <div class="section-heading"><div><p class="eyebrow">LINHA DO TEMPO · MAIS RECENTE PRIMEIRO</p><h2 id="trajetoria-title">Experiência em ambientes <em>que exigem continuidade.</em></h2></div><p class="heading-aside">Sustentação de serviços, atendimento corporativo, redes e coordenação de operação.</p></div>
+      <div class="timeline">
+        <article><span class="timeline-index"></span><div><h3>Hospital Padre Zé</h3><p>Coordenador de TI / Analista de Infraestrutura</p></div><div class="timeline-desc">Coordenação de 5 profissionais; gestão de incidentes e chamados; Service Desk estruturado no Jira; reimplantação do ERP Wareline e acompanhamento de SLA, TME, NPS e MTTR.</div></article>
+        <article><span class="timeline-index"></span><div><h3>Holmes</h3><p>Analista de Suporte / Processos</p></div><div class="timeline-desc">Suporte B2B, acompanhamento de métricas, BPMN, levantamento de requisitos, testes de APIs REST, logs e interface com Produto e Desenvolvimento.</div></article>
+        <article><span class="timeline-index"></span><div><h3>TV Cabo Branco</h3><p>Analista Assistente de Redes</p></div><div class="timeline-desc">Suporte N1/N2, redes e conectividade para mais de 100 estações, incluindo ambientes de transmissão; monitoramento de ativos e chamados no GLPI.</div></article>
+        <article><span class="timeline-index"></span><div><h3>Nelogica</h3><p>Analista Assistente III · Suporte N3</p></div><div class="timeline-desc">Troubleshooting em produção, análise de logs com Elastic, testes de APIs, escalonamento técnico e tratamento de incidentes em sistemas financeiros.</div></article>
+      </div>
+    </section>
+
+    <section class="section contact" id="contato" aria-labelledby="contato-title">
+      <div class="section-topline"><span><b>05</b> CONTATO</span><span>ENVIE UMA PROPOSTA</span></div>
+      <div class="contact-panel">
+        <div class="contact-copy"><p class="eyebrow"><i class="signal"></i> CANAL DE CONTATO</p><h2 id="contato-title">Seu projeto merece <em>uma conversa técnica.</em></h2><p>Precisa de uma landing page, um site, um sistema ou apoio em TI? Conte o contexto e retornarei por e-mail.</p><div class="contact-direct"><span>ENDEREÇO DE CONTATO</span><a href="mailto:marconydev@gmail.com">marconydev@gmail.com <span aria-hidden="true">↗</span></a></div><p class="contact-privacy">Ao enviar, os dados informados serão encaminhados pelo serviço externo FormSubmit ao e-mail de contato, apenas para responder à sua mensagem.</p></div>
+        <form id="contact-form" action="https://formsubmit.co/marconydev@gmail.com" method="POST" novalidate>
+          <div class="form-header"><span>NEW_MESSAGE.REQUEST</span><span><i class="signal"></i> CANAL DISPONÍVEL</span></div>
+          <input type="hidden" name="_subject" value="Novo contato — Portfólio Marcony Jr">
+          <input type="hidden" name="_template" value="table">
+          <div class="honey" aria-hidden="true"><label for="company-web">Deixe este campo em branco</label><input id="company-web" type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
+          <div class="form-row">
+            <div class="field"><label for="nome">01 · SEU NOME <span aria-hidden="true">*</span></label><input id="nome" name="name" type="text" autocomplete="name" required maxlength="120" placeholder="Como posso chamar você?"><span class="field-line"></span></div>
+            <div class="field"><label for="email">02 · E-MAIL <span aria-hidden="true">*</span></label><input id="email" name="email" type="email" autocomplete="email" required maxlength="180" placeholder="seuemail@empresa.com"><span class="field-line"></span></div>
+          </div>
+          <div class="field"><label for="assunto">03 · O QUE VOCÊ PRECISA? <span aria-hidden="true">*</span></label><select id="assunto" name="assunto" required><option value="" selected disabled>Selecione uma área</option><option>Landing page</option><option>Site institucional</option><option>Sistema web / SaaS</option><option>Automação / Integração / IA</option><option>Suporte / Infraestrutura / ITSM</option><option>Outra oportunidade</option></select><span class="field-line"></span></div>
+          <div class="field"><label for="mensagem">04 · CONTE SOBRE O PROJETO <span aria-hidden="true">*</span></label><textarea id="mensagem" name="message" rows="5" required minlength="15" maxlength="3000" placeholder="Objetivo, funcionalidades, contexto e prazo (se houver)..."></textarea><span class="field-line"></span><small class="field-hint"><span id="message-count">0</span>/3000 caracteres</small></div>
+          <label class="consent"><input id="consent" type="checkbox" required> <span>Concordo com o envio dos dados para retorno deste contato.</span></label>
+          <div class="form-footer"><span class="form-status" id="form-status" role="status" aria-live="polite">PREENCHA OS CAMPOS PARA ENVIAR</span><button id="submit-contact" type="submit" class="primary-button tech-hover" data-tech-hover>ENVIAR MENSAGEM <span aria-hidden="true">↗</span></button></div>
+          <button type="button" class="direct-submit" id="direct-submit" hidden>Não conseguiu enviar? Tentar envio direto pelo formulário</button>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer class="footer"><div class="footer-brand">MARCONY <strong>JR</strong><small>MHSSJR</small></div><span>© 2026 Marcony Jr · Site oficial </span><a href="#inicio">VOLTAR AO TOPO ↑</a></footer>
+</body>
+</html>
